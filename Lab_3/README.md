@@ -29,7 +29,9 @@ GROUP BY Teachers.LastName, Teachers.Experience;
 ```
 ## Бенчмарк без индексов
 
-//TODO фотки бенчмарков
+![alt text](Benchmarks/1.png)
+![alt text](Benchmarks/2.png)
+![alt text](Benchmarks/3.png)
 
 ## Создание индексов для первого запроса:
 
@@ -48,6 +50,11 @@ CREATE INDEX idx_included_index ON Workload(TeacherCode) INCLUDE (Hours);
 CREATE INDEX idx_conditional_index ON Teachers(Experience) WHERE Experience > 5;
 ```
 
+![alt text](Benchmarks/1_1.png)
+![alt text](Benchmarks/1_2.png)
+![alt text](Benchmarks/1_3.png)
+
+
 ## Создание индексов для второго запроса:
 
 #### 1. **B-tree индекс:**
@@ -65,6 +72,11 @@ CREATE INDEX idx_included_index_group ON Groups(Number_Of_Students) INCLUDE (Gro
 CREATE INDEX idx_conditional_index_group ON Groups(Specialty) WHERE Specialty = 'Computer Science';
 ```
 
+![alt text](Benchmarks/2_1.png)
+![alt text](Benchmarks/2_2.png)
+![alt text](Benchmarks/2_3.png)
+
+
 ## Создание индексов для третьего запроса:
 
 #### 1. **B-tree индекс:**
@@ -81,6 +93,14 @@ CREATE INDEX idx_included_index_workload ON Teachers(TeacherCode) INCLUDE (Exper
 ```sql
 CREATE INDEX idx_conditional_index_experience ON Teachers(TeacherCode, Experience) WHERE Experience > 10;
 ```
+
+![alt text](Benchmarks/3_1.png)
+![alt text](Benchmarks/3_2.png)
+![alt text](Benchmarks/3_3.png)
+
+## Выводы
+
+### Таким образом наблюдаем небольшую разниуц в покахателях. Это показывает, что индексы не так эффективны на небольших объемах данных. Разница в бенчмарках была бы больше если мы брали болшие объемы данных. 
 
 
 
